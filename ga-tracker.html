@@ -70,8 +70,11 @@ For more information, please reference [Google Analytics Developer Guides](https
           }
         } else {
           if(id) {
-            this.setName(ga('create', id, 'auto').get('name'));
-            ga('send', 'pageview');
+            var _tracker = ga('create', id, 'auto');
+            if(_tracker) {
+              this.setName(_tracker.get('name'));
+              ga('send', 'pageview');
+            }
           }
         }
       },
