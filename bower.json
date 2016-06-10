@@ -1,6 +1,6 @@
 {
   "name": "ga-tracker",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "authors": [
     "Jane Manchun Wong <jane@jane.codes>"
   ],
@@ -21,5 +21,11 @@
   "ignore": [],
   "dependencies": {
     "polymer": "polymer/polymer#^1.5.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
   }
 }
