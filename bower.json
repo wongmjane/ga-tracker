@@ -2,6 +2,13 @@
   "name": "ga-tracker",
   "version": "1.1.0",
   "description": "Wrapper for Google Analytics tracker",
+  "authors": [
+    {
+      "name": "Jane Manchun Wong",
+      "email": "jane@wongmjane.com",
+      "homepage": "https://wongmjane.com"
+    }
+  ],
   "main": "ga-tracker.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0"
