@@ -1,3 +1,3 @@
-# ga-tracker
+# \<ga-tracker\>
 
-Google Analytics tracker as a web component.
+Wrapper for Google Analytics tracker

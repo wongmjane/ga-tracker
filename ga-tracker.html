@@ -1,91 +1,40 @@
 <link rel="import" href="../polymer/polymer.html">
 
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 <!--
-`<ga-tracker>` adds Google Analytics's JavaScript library on your page (with respect of user's choice on [DoNotTrack](https://www.w3.org/TR/tracking-dnt/) unless specified not to).
-
-In typical use, just slap one `<ga-tracker>`:
-
-    <ga-tracker id="UA-XXXXX-Y"></ga-tracker>
-
-For more information, please reference [Google Analytics Developer Guides](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference).
+`ga-tracker`
+Wrapper for Google Analytics tracker
 -->
 
 <dom-module id="ga-tracker">
-  <template>
-    <style>
-      :host {
-        display: none;
-        visibility: hidden;
-      }
-    </style>
-  </template>
-
   <script>
-    Polymer({
-
-      is: 'ga-tracker',
-
-      properties: {
-
-        /**
-         * The [Tracking ID / Web Property ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#trackingId)
-         * @type {String}
-         */
-        id: String,
-
-        /**
-         * If false, disrespect user's choice on [DoNotTrack](https://www.w3.org/TR/tracking-dnt/).
-         * @type {Boolean}
-         */
-        respectDNT: {
-          type: Boolean,
-          value: true
-        },
-
-        /**
-         * trackerName
-         * @type {String}
-         */
-        name: {
-          type: String,
-          readOnly: true
-        }
+  Polymer({
+    is: 'ga-tracker',
+    properties: {
+      cookiedomain: {
+        type: String,
+        value: 'auto'
       },
-
-      created: function() {
-        window.ga = window.ga || function() {
-          (ga.q = ga.q || []).push(arguments);
-        };
-        ga.l = +new Date;
-      },
-
-      attached: function() {
-        var id = this.getAttribute('id') || undefined;
-
-        if(navigator.doNotTrack && !this.getAttribute('respectDNT')) {
-          if(id) {
-            window['ga-disable-' + id] = true;
-          }
-        } else {
-          if(id) {
-            var _tracker = ga('create', id, 'auto');
-            if(_tracker) {
-              this.setName(_tracker.get('name'));
-              ga('send', 'pageview');
-            }
-          }
-        }
-      },
-
-      detached: function() {
-        window['ga-disable-' + this.getAttribute('id')] = undefined;
-        if(this.getAttribute('name')) {
-          ga.remove(this.getAttribute('name'));
-        }
-      }
-
-    });
+      key: String,
+      name: String,
+      requires: String
+    },
+    created: function() {
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    },
+    attached: function() {
+      this.name = this.name || Math.random().toString(36).substr(2);
+      ga('create', this.key, this.cookiedomain, this.name);
+      this.requires && this.requires.trim().split(' ').forEach(function(pluginName) {
+        ga(this.name + '.require', pluginName);
+      }, this);
+      ga('send', 'pageview');
+    },
+    deteched: function() {
+      ga(this.name + '.remove');
+    }
+  });
   </script>
 </dom-module>

@@ -1,26 +1,9 @@
 {
   "name": "ga-tracker",
-  "version": "0.2.1.1",
-  "authors": [
-    "Jane Manchun Wong <jane@jane.codes>"
-  ],
-  "description": "Google Analytics tracker",
-  "private": true,
+  "description": "Wrapper for Google Analytics tracker",
   "main": "ga-tracker.html",
-  "license": "MIT",
-  "homepage": "https://github.com/wongmjane/ga-tracker",
-  "keywords": [
-    "web-components",
-    "polymer",
-    "google-analytics"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/wongmjane/ga-tracker.git"
-  },
-  "ignore": [],
   "dependencies": {
-    "polymer": "polymer/polymer#^1.5.0"
+    "polymer": "Polymer/polymer#^1.4.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
